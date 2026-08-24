@@ -4,6 +4,7 @@ const array = [
   { id: 2, fname: "Denisa", lname: "Pavlusíková" },
   { id: 3, fname: "Gopas", lname: "Titanium" }
 ]
+
 </script>
 
 <template>
@@ -19,7 +20,7 @@ const array = [
 
   <ul>
     <li v-for="me in array[0]" :key="me.id">
-      {{ me.fname }} - {{ me.lname }}
+      {{ me }}
     </li>
   </ul>
 

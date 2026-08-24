@@ -1,14 +1,22 @@
 <script setup>
+import { ref } from 'vue'
+
 const keyboard = [
   ["7", "8", "9", "+"],
   ["4", "5", "6", "-"],
   ["1", "2", "3", "*"],
   ["", "0", "", "/"],
+  ["="]
 ]
-const value = 123
+const result = ref("")
 
 const handleClick = (key) => {
-  console.log(key)
+  if (key.target.innerText === "=") {
+    result.value = eval(result.value)
+    return
+  }
+
+  result.value += key.target.innerText
 }
 </script>
 
@@ -16,11 +24,11 @@ const handleClick = (key) => {
   <body class="body">
     <h1>KALKULÁTOR</h1>
 
-    <p class="result">{{ value }}</p>
+    <p class="result">{{ result === "" ? 0 : result }}</p>
 
     <div class="table">
       <div class="row" v-for="(row, index) in keyboard" :index>
-        <div v-for="(key, iIndex) in row" :key="iIndex">
+        <div v-for="(key, iIndex) in row" :key="iIndex" class="column">
           <button class="key" v-if="key" :class="{'blue': iIndex != 3, 'green': iIndex === 3}" v-on:click="handleClick"> 
             {{ key }}
           </button>
@@ -69,6 +77,15 @@ const handleClick = (key) => {
   grid-template-columns: repeat(4, 40px);
   justify-content: center;
   gap: 8px;
+}
+
+.row:last-child {
+  grid-template-columns: 1fr;
+}
+
+.row:last-child .key {
+  width: 100%;
+  background-color: lime;
 }
 
 .key {

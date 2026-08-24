@@ -1,17 +1,74 @@
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 
 
-const count = ref(0)
+var count = ref(0)
 
-function onClick() {
-  alert('God help me!')
+function onClick(e) {
+  alert('God help me!' + ' ' + e.target.innerText)
+}
+
+const plus = () => {
+  count.value ++;
+  state.count ++;
+}
+
+const minus = () => {
+  count.value --;
+  state.count --;
+}
+
+const person = ref({
+  id: 1,
+  fname: "Marek",
+  address: {
+    street: "Vsetínská",
+    number: "12"
+  }
+})
+
+const value = ref("")
+
+const state = reactive({count: 0})
+
+const changeName = () => {
+  person.value.fname = value.value
+  console.log(value)
 }
 </script>
 
 <template>
-  <button v-on:click="onClick">Click me!</button>
-  <button @click="onClick">Click me!</button>
+  <div class="flex">
+    <button v-on:click="onClick">Click me!</button>
+    <button @click="onClick">Click me!</button>
+
+    <div style="display: flex; gap: 8px;">
+      <span>REF COUNT: {{count}}</span>
+      <button @click="plus">+</button>
+      <button @click="minus">-</button>
+    </div>
+
+    <div style="display: flex; gap: 8px;">
+      <span>REACTIVE COUNT: {{state.count}}</span>
+      <button @click="plus">+</button>
+      <button @click="minus">-</button>
+    </div>
+  </div>
+
+  <div>
+    <span>
+      {{ person }}
+    </span>
+
+    <input type="text" v-on:keypress="changeName" />
+  </div>
 </template>
 
-<style></style>
+<style>
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+}
+</style>
