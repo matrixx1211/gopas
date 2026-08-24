@@ -27,14 +27,10 @@ const person = ref({
   }
 })
 
-const value = ref("")
+// const name = ref("Marek")
 
 const state = reactive({count: 0})
 
-const changeName = () => {
-  person.value.fname = value.value
-  console.log(value)
-}
 </script>
 
 <template>
@@ -60,7 +56,7 @@ const changeName = () => {
       {{ person }}
     </span>
 
-    <input type="text" v-on:keypress="changeName" />
+    <!-- <input type="text" v-model="name" /> -->
   </div>
 </template>
 

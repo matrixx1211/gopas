@@ -11,17 +11,22 @@ const keyboard = [
 const result = ref("")
 
 const handleClick = (key) => {
-  if (key.target.innerText === "=") {
+  if (key === "=") {
     result.value = eval(result.value)
     return
   }
 
-  result.value += key.target.innerText
+  result.value += key
+}
+
+const onKeyPress = (e) => {
+  console.log(e);
+  
 }
 </script>
 
 <template>
-  <body class="body">
+  <body class="body" @keypress="onKeyPress"> 
     <h1>KALKULÁTOR</h1>
 
     <p class="result">{{ result === "" ? 0 : result }}</p>
@@ -29,7 +34,7 @@ const handleClick = (key) => {
     <div class="table">
       <div class="row" v-for="(row, index) in keyboard" :index>
         <div v-for="(key, iIndex) in row" :key="iIndex" class="column">
-          <button class="key" v-if="key" :class="{'blue': iIndex != 3, 'green': iIndex === 3}" v-on:click="handleClick"> 
+          <button class="key" v-if="key" :class="{'blue': iIndex != 3, 'green': iIndex === 3}" v-on:click="() => handleClick(key)"> 
             {{ key }}
           </button>
         </div>
@@ -85,7 +90,7 @@ const handleClick = (key) => {
 
 .row:last-child .key {
   width: 100%;
-  background-color: lime;
+  background-color: violet;
 }
 
 .key {

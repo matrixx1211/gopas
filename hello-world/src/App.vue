@@ -6,6 +6,7 @@ import HtmlDirectiveDemo from './components/data-rendering/HtmlDirectiveDemo.vue
 import IfDirectiveDemo from './components/data-rendering/IfDirectiveDemo.vue';
 import TypeToStringTest from './components/data-rendering/TypeToStringTest.vue';
 import EventHandlingDemo from './components/user-interactions/EventHandlingDemo.vue';
+import InputHandlingDemo from './components/user-interactions/InputHandlingDemo.vue';
 </script>
 
 <template>
@@ -29,7 +30,8 @@ import EventHandlingDemo from './components/user-interactions/EventHandlingDemo.
   <EventHandlingDemo />
   <hr>
 
-
+  <InputHandlingDemo />
+  <hr>
 </template>
 
 <style scoped>
