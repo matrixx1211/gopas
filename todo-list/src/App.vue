@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue';
+import { computed, reactive, ref } from 'vue';
 
 const formData = reactive({
   task: "",
@@ -34,6 +34,27 @@ if (todos != null && todos.length > 0) {
     submittedData.push(todos[i])
   }
 }
+
+const itemsPerPage = 5
+
+const currentPage = ref(1)
+
+const totalPages = computed(() => parseInt(submittedData.length / itemsPerPage) + 1)
+
+const changePage = (direction) => {
+  const newPage = currentPage.value + direction
+
+  if (newPage >= 1 && newPage <= totalPages.value) {
+    currentPage.value = newPage
+  }
+}
+
+const filteredData = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  // Tady chyběl druhý parametr (end)
+  return submittedData.slice(start, end)
+})
 </script>
 
 <template>
@@ -64,11 +85,19 @@ if (todos != null && todos.length > 0) {
       <button v-on:click="emptyList">Empty list!</button>
     </div>
 
-    <ul v-if="submittedData.length > 0">
-      <li v-for="(task, index) in submittedData" :key="index">
-        {{ task.task }} ({{ task.done ? "done" : "not done" }})
-      </li>
-    </ul>
+    <div v-if="filteredData.length > 0">
+      <ul >
+        <li v-for="(task, index) in filteredData" :key="index">
+          {{ task.task }} ({{ task.done ? "done" : "not done" }})
+        </li>
+      </ul>
+      <div style="display: flex; height: 40px; width: 100%; gap: 16px; padding-top: 16px; justify-content: center;" v-if="totalPages > 1">
+        <button style="aspect-ratio: 1; border-radius: 8px; border: 1px solid red; background-color: white; font-weight: bold; font-size: medium;" @click="() => changePage(-1)" :disabled="currentPage === 1"><</button>
+        <span style="font-weight: bold; margin: auto 0;">{{ currentPage }} / {{ totalPages }}</span>
+        <button style="aspect-ratio: 1; border-radius: 8px; border: 1px solid red; background-color: white; font-weight: bold; font-size: medium;" @click="() => changePage(1)" :disabled="currentPage === totalPages">></button>
+      </div>
+    </div>
+
 
     <p v-else>Nothing inside!</p>
   </body>

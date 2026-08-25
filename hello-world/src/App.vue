@@ -7,30 +7,34 @@ import IfDirectiveDemo from './components/data-rendering/IfDirectiveDemo.vue';
 import TypeToStringTest from './components/data-rendering/TypeToStringTest.vue';
 import EventHandlingDemo from './components/user-interactions/EventHandlingDemo.vue';
 import InputHandlingDemo from './components/user-interactions/InputHandlingDemo.vue';
+import WatcherDemo from './components/WatcherDemo.vue';
 </script>
 
 <template>
   <h1 v-bind:title="title" v-bind:hidden="bool">{{ title }}</h1>
   <hr>
-  <HtmlDirectiveDemo v-if="true" />
+  <HtmlDirectiveDemo v-if="false" />
   <hr>
 
-  <TypeToStringTest v-if="true" />
+  <TypeToStringTest v-if="false" />
   <hr>
 
-  <IfDirectiveDemo />
+  <IfDirectiveDemo v-if="false" />
   <hr>
 
-  <ForDirectiveDemo />
+  <ForDirectiveDemo v-if="false" />
   <hr>
 
-  <CssDemo />
+  <CssDemo v-if="false" />
   <hr>
 
-  <EventHandlingDemo />
+  <EventHandlingDemo v-if="false" />
   <hr>
 
-  <InputHandlingDemo />
+  <InputHandlingDemo v-if="false" />
+  <hr>
+
+  <WatcherDemo v-if="true"/>
   <hr>
 </template>
 

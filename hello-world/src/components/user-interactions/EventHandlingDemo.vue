@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 
 
 var count = ref(0)
@@ -31,6 +31,8 @@ const person = ref({
 
 const state = reactive({count: 0})
 
+const doubleCount = computed(() => count.value * 2)
+
 </script>
 
 <template>
@@ -48,6 +50,10 @@ const state = reactive({count: 0})
       <span>REACTIVE COUNT: {{state.count}}</span>
       <button @click="plus">+</button>
       <button @click="minus">-</button>
+    </div>
+
+    <div style="display: flex; gap: 8px;">
+      <span>COMPUTED COUNT: {{doubleCount}}</span>
     </div>
   </div>
 
