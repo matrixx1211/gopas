@@ -1,32 +1,52 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const keyboard = [
   ["7", "8", "9", "+"],
   ["4", "5", "6", "-"],
   ["1", "2", "3", "*"],
-  ["", "0", "", "/"],
+  ["", "0", "C", "/"],
   ["="]
 ]
 const result = ref("")
 
 const handleClick = (key) => {
-  if (key === "=") {
+  if (key === "=" && result.value != "") {
     result.value = eval(result.value)
     return
   }
 
-  result.value += key
+
+  if (key === "C") { result.value = ""; return }
+
+  if (key != "=") { result.value += key }
 }
 
 const onKeyPress = (e) => {
   console.log(e);
-  
+
 }
+
+watch(result, (newResult, oldResult) => {
+  /* const len = newResult.length
+  if (len) {
+
+    if (newResult[len - 1].endsWith("+") || newResult[len - 1].endsWith("-") || newResult[len - 1].endsWith("*") || newResult[len - 1].endsWith("/")) {
+      result.value = newResult
+    }
+    else if (isNaN(eval(newResult))) {
+      result.value = ""
+    }
+  } */
+
+  console.log("dislay is showing: " + newResult + " old value was: " + oldResult);
+  
+})
 </script>
 
 <template>
-  <body class="body" @keypress="onKeyPress"> 
+
+  <body class="body" @keypress="onKeyPress">
     <h1>KALKULÁTOR</h1>
 
     <p class="result">{{ result === "" ? 0 : result }}</p>
@@ -34,7 +54,8 @@ const onKeyPress = (e) => {
     <div class="table">
       <div class="row" v-for="(row, index) in keyboard" :index>
         <div v-for="(key, iIndex) in row" :key="iIndex" class="column">
-          <button class="key" v-if="key" :class="{'blue': iIndex != 3, 'green': iIndex === 3}" v-on:click="() => handleClick(key)"> 
+          <button class="key" v-if="key" :class="{ 'blue': iIndex != 3, 'green': iIndex === 3 }"
+            v-on:click="() => handleClick(key)">
             {{ key }}
           </button>
         </div>
@@ -54,6 +75,7 @@ const onKeyPress = (e) => {
   font-weight: 600;
   font-size: 18px;
 }
+
 .body {
   width: 100%;
   display: flex;
@@ -113,6 +135,7 @@ const onKeyPress = (e) => {
   background-color: darkred;
   color: white;
 }
+
 .green {
   background-color: rgb(162, 255, 108);
 }

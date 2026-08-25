@@ -8,6 +8,7 @@ const data = ref({})
 const error = ref("")
 const loading = ref(false)
 
+
 watch(id, async(newId) => {
  try {
     loading.value = true
@@ -23,7 +24,7 @@ watch(id, async(newId) => {
   } finally {
     loading.value = false
   }
-})
+}, {immediate: true})
 </script>
 
 <template>
