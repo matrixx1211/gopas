@@ -8,6 +8,7 @@ import TypeToStringTest from './components/data-rendering/TypeToStringTest.vue';
 import EventsDemo from './components/events/EventsDemo.vue';
 import LifecycleDemo from './components/lifecycle/LifecycleDemo.vue';
 import PropsDemo from './components/props/PropsDemo.vue';
+import ProvideInjectDemo from './components/provide-inject/ProvideInjectDemo.vue';
 import EventHandlingDemo from './components/user-interactions/EventHandlingDemo.vue';
 import InputHandlingDemo from './components/user-interactions/InputHandlingDemo.vue';
 import WatcherDemo from './components/WatcherDemo.vue';
@@ -46,7 +47,10 @@ import WatcherDemo from './components/WatcherDemo.vue';
   <PropsDemo v-if="false" />
   <hr>
 
-  <EventsDemo v-if="true" />
+  <EventsDemo v-if="false" />
+  <hr>
+
+  <ProvideInjectDemo v-if="true" />
   <hr>
 </template>
 
