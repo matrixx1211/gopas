@@ -1,5 +1,7 @@
 <script setup>
 const title = "WHAAAAAT?"
+import ComposablesDemo from './components/composable/ComposablesDemo.vue';
+import CustomDirectiveDemo from './components/CustomDirectiveDemo.vue';
 import CssDemo from './components/data-rendering/CssDemo.vue';
 import ForDirectiveDemo from './components/data-rendering/ForDirectiveDemo.vue';
 import HtmlDirectiveDemo from './components/data-rendering/HtmlDirectiveDemo.vue';
@@ -15,7 +17,7 @@ import WatcherDemo from './components/WatcherDemo.vue';
 </script>
 
 <template>
-  <h1 v-bind:title="title" v-bind:hidden="bool">{{ title }}</h1>
+  <h1 v-bind:title="title">{{ title }}</h1>
   <hr>
   <HtmlDirectiveDemo v-if="false" />
   <hr>
@@ -50,8 +52,13 @@ import WatcherDemo from './components/WatcherDemo.vue';
   <EventsDemo v-if="false" />
   <hr>
 
-  <ProvideInjectDemo v-if="true" />
+  <ProvideInjectDemo v-if="false" />
   <hr>
+
+  <ComposablesDemo v-if="true" />
+  <hr>
+
+  <CustomDirectiveDemo />
 </template>
 
 <style scoped>
