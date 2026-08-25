@@ -5,6 +5,7 @@ import ForDirectiveDemo from './components/data-rendering/ForDirectiveDemo.vue';
 import HtmlDirectiveDemo from './components/data-rendering/HtmlDirectiveDemo.vue';
 import IfDirectiveDemo from './components/data-rendering/IfDirectiveDemo.vue';
 import TypeToStringTest from './components/data-rendering/TypeToStringTest.vue';
+import EventsDemo from './components/events/EventsDemo.vue';
 import LifecycleDemo from './components/lifecycle/LifecycleDemo.vue';
 import PropsDemo from './components/props/PropsDemo.vue';
 import EventHandlingDemo from './components/user-interactions/EventHandlingDemo.vue';
@@ -39,10 +40,13 @@ import WatcherDemo from './components/WatcherDemo.vue';
   <WatcherDemo v-if="false" />
   <hr>
 
-  <LifecycleDemo v-if="true" />
+  <LifecycleDemo v-if="false" />
   <hr>
 
-  <PropsDemo v-if="true" />
+  <PropsDemo v-if="false" />
+  <hr>
+
+  <EventsDemo v-if="true" />
   <hr>
 </template>
 
