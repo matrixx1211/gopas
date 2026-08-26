@@ -1,64 +1,29 @@
 <script setup>
 const title = "WHAAAAAT?"
-import ComposablesDemo from './components/composable/ComposablesDemo.vue';
-import CustomDirectiveDemo from './components/CustomDirectiveDemo.vue';
-import CssDemo from './components/data-rendering/CssDemo.vue';
-import ForDirectiveDemo from './components/data-rendering/ForDirectiveDemo.vue';
-import HtmlDirectiveDemo from './components/data-rendering/HtmlDirectiveDemo.vue';
-import IfDirectiveDemo from './components/data-rendering/IfDirectiveDemo.vue';
-import TypeToStringTest from './components/data-rendering/TypeToStringTest.vue';
-import EventsDemo from './components/events/EventsDemo.vue';
-import LifecycleDemo from './components/lifecycle/LifecycleDemo.vue';
-import PropsDemo from './components/props/PropsDemo.vue';
-import ProvideInjectDemo from './components/provide-inject/ProvideInjectDemo.vue';
-import EventHandlingDemo from './components/user-interactions/EventHandlingDemo.vue';
-import InputHandlingDemo from './components/user-interactions/InputHandlingDemo.vue';
-import WatcherDemo from './components/WatcherDemo.vue';
+import { RouterLink, RouterView, useRouter } from 'vue-router';
+const router = useRouter()
+function goBack() {
+  router.go(-1)
+}
 </script>
 
 <template>
+  <nav>
+    <a @click="goBack"><- go back!</a>
+    |
+    <RouterLink to="/">home</RouterLink>
+    |
+    <RouterLink to="/data-rendering">data-rendering</RouterLink>
+    |
+    <RouterLink to="/user-interactions">user-interactions</RouterLink>
+    |
+    <RouterLink to="/other-parts">other</RouterLink>
+  </nav>
+
   <h1 v-bind:title="title">{{ title }}</h1>
   <hr>
-  <HtmlDirectiveDemo v-if="false" />
-  <hr>
 
-  <TypeToStringTest v-if="false" />
-  <hr>
-
-  <IfDirectiveDemo v-if="false" />
-  <hr>
-
-  <ForDirectiveDemo v-if="false" />
-  <hr>
-
-  <CssDemo v-if="false" />
-  <hr>
-
-  <EventHandlingDemo v-if="false" />
-  <hr>
-
-  <InputHandlingDemo v-if="false" />
-  <hr>
-
-  <WatcherDemo v-if="false" />
-  <hr>
-
-  <LifecycleDemo v-if="false" />
-  <hr>
-
-  <PropsDemo v-if="false" />
-  <hr>
-
-  <EventsDemo v-if="false" />
-  <hr>
-
-  <ProvideInjectDemo v-if="false" />
-  <hr>
-
-  <ComposablesDemo v-if="true" />
-  <hr>
-
-  <CustomDirectiveDemo />
+  <RouterView />
 </template>
 
 <style scoped>

@@ -1,14 +1,21 @@
 <script setup>
-import Todo from './component/ToDo.vue';
+import setupToDoLogic from './component/ToDoLogic.js';
 
+setupToDoLogic()
 </script>
 
 <template>
+
   <body>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      |
+      <RouterLink to="/add">Add todo</RouterLink>
+    </nav>
+
     <h1>todo-list</h1>
     <h2>Welcome to 1999!</h2>
-
-    <Todo />
+    <RouterView />
   </body>
 </template>
 

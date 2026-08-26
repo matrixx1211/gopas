@@ -1,7 +1,18 @@
 <script setup>
 import { inject } from 'vue';
+import { useRoute } from 'vue-router';
 
-const { addItem, formData } = inject("todo")
+const { addItem, formData, submittedData } = inject("todo")
+const route = useRoute()
+
+if (route.name === "edit" && submittedData.length > 0) {
+    const found = submittedData.find((d) => d.id === Number(route.params.id));
+    if (found) {
+        formData.id = found.id;
+        formData.task = found.task;
+        formData.done = found.done;
+    }
+}
 </script>
 
 <template>
@@ -13,6 +24,7 @@ const { addItem, formData } = inject("todo")
         </div>
 
         <div style="display: flex; gap: 8px; height: 100%; justify-content: space-between;">
+            <input type="hidden" v-model="formData.id" />
             <input type="text" v-model="formData.task" />
             <input type="checkbox" v-model="formData.done" />
         </div>
@@ -20,6 +32,7 @@ const { addItem, formData } = inject("todo")
         <br>
 
         <button>Add</button>
+        <!-- <button @click="$route.params.id = submittedData[submittedData.findIndex(d => d.id) + 1].id" v-if="$route.name === 'edit' && submittedData.length > 0">Next</button> -->
     </form>
 </template>
 

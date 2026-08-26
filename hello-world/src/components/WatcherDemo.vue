@@ -24,7 +24,7 @@ watch(id, async(newId) => {
   } finally {
     loading.value = false
   }
-}, {immediate: true})
+}, {immediate: false})
 </script>
 
 <template>
@@ -39,7 +39,7 @@ watch(id, async(newId) => {
     <button :disabled="loading">Get data</button>
   </form>
 
-  <div>
+  <div style="max-width: 300px;">
     {{ JSON.stringify(data) }}
   </div>
 
